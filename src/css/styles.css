@@ -1,0 +1,189 @@
+:root {
+    --bg: #141820;
+    --panel: #1d232e;
+    --borde: #2c3544;
+    --texto: #e8ecf3;
+    --texto-suave: #8b96a9;
+    --acento: #39ff14;
+    --vivo: #3ddc84;
+    --muerto: #ff5d5d;
+    --desconocido: #9aa3b2;
+}
+
+* { box-sizing: border-box; }
+
+body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--texto);
+    font-family: "Segoe UI", system-ui, sans-serif;
+}
+
+.d-none { display: none !important; }
+
+/* ---------- Barra superior ---------- */
+.topbar {
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    padding: 14px 28px;
+    background: rgba(20, 24, 32, 0.95);
+    border-bottom: 1px solid var(--borde);
+}
+
+.topbar h1 {
+    margin: 0;
+    font-size: 1.3rem;
+    letter-spacing: 0.02em;
+}
+
+.topbar h1 span { color: var(--acento); }
+
+.topbar p {
+    margin: 0;
+    font-size: 0.75rem;
+    color: var(--texto-suave);
+}
+
+.contenedor {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 24px 28px 40px;
+}
+
+/* ---------- Spinner de carga ---------- */
+.loading {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 16px 0;
+    color: var(--texto-suave);
+}
+
+.spinner {
+    width: 22px;
+    height: 22px;
+    border: 3px solid var(--borde);
+    border-top-color: var(--acento);
+    border-radius: 50%;
+    animation: girar 0.8s linear infinite;
+}
+
+@keyframes girar { to { transform: rotate(360deg); } }
+
+.mensaje-error {
+    background: rgba(255, 93, 93, 0.1);
+    border: 1px solid rgba(255, 93, 93, 0.4);
+    color: var(--muerto);
+    padding: 12px 16px;
+    border-radius: 8px;
+}
+
+.btn-reintentar {
+    display: block;
+    margin: 12px 0 0;
+    background: var(--acento);
+    color: #08210a;
+    border: none;
+    border-radius: 8px;
+    padding: 9px 18px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+/* ---------- Cuadricula de tarjetas ---------- */
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+    gap: 18px;
+}
+
+.tarjeta {
+    background: var(--panel);
+    border: 1px solid var(--borde);
+    border-radius: 12px;
+    overflow: hidden;
+    transition: transform 0.15s ease, border-color 0.15s ease;
+}
+
+.tarjeta:hover {
+    transform: translateY(-3px);
+    border-color: var(--acento);
+}
+
+.tarjeta-img {
+    display: block;
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
+    background: var(--borde);
+}
+
+.tarjeta-cuerpo { padding: 14px 16px 16px; }
+
+.tarjeta-nombre {
+    margin: 0 0 6px;
+    font-size: 1.05rem;
+}
+
+.estado {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    margin: 0 0 12px;
+    font-size: 0.82rem;
+    color: var(--texto-suave);
+}
+
+.punto {
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+    background: var(--desconocido);
+}
+
+.estado.alive .punto { background: var(--vivo); }
+.estado.dead .punto { background: var(--muerto); }
+
+dl {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 4px 10px;
+    margin: 0;
+    font-size: 0.82rem;
+}
+
+dt { color: var(--texto-suave); }
+dd { margin: 0; text-align: right; overflow-wrap: anywhere; }
+
+/* ---------- Paginacion ---------- */
+.paginacion {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 18px;
+    margin-top: 30px;
+}
+
+.paginacion button {
+    background: var(--acento);
+    color: #08210a;
+    border: none;
+    border-radius: 8px;
+    padding: 9px 18px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.paginacion button:disabled {
+    opacity: 0.35;
+    cursor: not-allowed;
+}
+
+#pagina-actual {
+    color: var(--texto-suave);
+    font-size: 0.9rem;
+}
